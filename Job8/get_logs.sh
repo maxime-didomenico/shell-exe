@@ -3,7 +3,7 @@
 
 Date=`date "+%d-%m-%y-%H:%M"`
 last > buff
-grep -v -E "(^#|^$' ')" buff | wc -l > nbc
-tar -zcvf number_connection_$Date.tar.gz nbc
-mv number_connection_$Date.tar.gz Backup
-rm buff nbc
+grep -v -E "(^#|^$' ')" buff | wc -l > nbl
+tar -zcvf number_connection_$Date.tar.gz nbl
+mv number_connection_*.tar.gz Backup
+rm buff nbl
