@@ -4,9 +4,6 @@
 i=2
 nb=`wc Shell_Userlist.csv > a && awk '{print $1}' FS=" " a && rm a`
 nb=`expr $nb + 1`
-#usr=`awk '{print 3}' FS="," buff`
-#psw=`awk '{print 4}' FS="," buff`
-#rgt=`awk '{print 5}' FS="," buff`
 
 while [ $i -lt $nb ]
 do
@@ -16,14 +13,15 @@ do
 	lan=`awk '{print $3}' FS="," buff`
   	psw=`awk '{print $4}' FS="," buff`
   	rgt=`awk '{print $5}' FS="," buff`
-	sudo dscl . -create /Users/$usr
-	sudo dscl . -create /Users/$usr RealName "$fin $lan"
-	sudo dscl . -passwd /Users/$usr $psw
+	sudo dscl / -create /Users/$usr
+	sudo dscl / -create /Users/$usr RealName "$fin $lan"
+	sudo dscl / -create /Users/$usr UniqueID $id
+	sudo dscl / -passwd /Users/$usr $psw
 	if [[ "$rgt" == *"Admin"* ]]
 		then
 			i=`expr $i + 1`
 	else
-		sudo dscl . -append /Groups/admin GroupMembership $usr
+		sudo dscl / -append /Groups/admin GroupMembership $usr
 		i=`expr $i + 1`
 	fi
 	rm buff
