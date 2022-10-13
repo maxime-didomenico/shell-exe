@@ -13,15 +13,15 @@ do
 	lan=`awk '{print $3}' FS="," buff`
   	psw=`awk '{print $4}' FS="," buff`
   	rgt=`awk '{print $5}' FS="," buff`
-	dscl / -create /Users/$usr
-	dscl / -create /Users/$usr RealName "$fin $lan"
-	dscl / -create /Users/$usr UniqueID $id
-	dscl / -passwd /Users/$usr $psw
+	sudo dscl / -create /Users/$usr
+	sudo dscl / -create /Users/$usr RealName "$fin $lan"
+	sudo dscl / -create /Users/$usr UniqueID $id
+	sudo dscl / -passwd /Users/$usr $psw
 	if [[ "$rgt" == *"Admin"* ]]
 		then
 			i=`expr $i + 1`
 	else
-		dscl / -append /Groups/admin GroupMembership $usr
+		sudo dscl / -append /Groups/admin GroupMembership $usr
 		i=`expr $i + 1`
 	fi
 	rm buff
